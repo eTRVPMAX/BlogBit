@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts tagged with "{{ tag.name }}"{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Posts tagged with "{{ tag.name }}"</h1>
+        <div class="posts">
+            {% for post in posts %}
+                <div class="post">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-thumbnail">
+                    {% endif %}
+                    <h2><a href="{% url 'post_page' post.slug %}">{{ post.title }}</a></h2>
+                    <p>{{ post.content|truncatewords:30 }}</p>
+                    <p><small>By {{ post.author.username }} on {{ post.created_at }}</small></p>
+                    <a href="{% url 'post_page' post.slug %}" class="read-more">Read More</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

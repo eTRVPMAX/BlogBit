@@ -175,6 +175,24 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
+/* Tags */
+.tags {
+  margin-top: 10px;
+}
+
+.tags a {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background: #4a90e2;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 0.8em;
+  text-decoration: none;
+  border: 1px
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -239,25 +257,6 @@ footer .social-links a:hover {
 
 .comment small {
   color: #a0a0a0;
-}
-
-/* Tags */
-.tags {
-  margin-top: 20px;
-}
-
-.tags a {
-  display: inline-block;
-  padding: 5px 10px;
-  margin-right: 5px;
-  background: #4a90e2;
-  color: #121212;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.tags a:hover {
-  background: #1c6dd0;
 }
 
 /* Pagination */

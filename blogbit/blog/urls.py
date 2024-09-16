@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name="home"),
     path('post/<slug:slug>/', views.post_page, name='post_page'),
+    path('tag/<slug:slug>/', views.tagged, name='tagged'),
 ]
 
 if settings.DEBUG:

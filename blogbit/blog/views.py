@@ -1,6 +1,6 @@
 from multiprocessing import context
-from django.shortcuts import render
-from .models import BlogPost
+from django.shortcuts import render, get_object_or_404
+from .models import BlogPost, Tag
 
 # Create your views here.
 def index(request):
@@ -16,3 +16,8 @@ def post_page(request, slug):
         'post': post
     }
     return render(request, 'blog/post.html', context)
+
+def tagged(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    posts = BlogPost.objects.filter(tags=tag)
+    return render(request, 'blog/tagged.html', {'tag': tag, 'posts': posts})
