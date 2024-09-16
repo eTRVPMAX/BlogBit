@@ -1,6 +1,4 @@
-from email.mime import image
 from django.db import models
-from django.test import tag
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
