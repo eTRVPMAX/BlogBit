@@ -15,7 +15,7 @@
                     {% endfor %}
                 </div>
                 <h2><a href="{% url 'post_page' post.slug %}">{{ post.title }}</a></h2>
-                <p>{{ post.content|truncatewords:30 }}</p>
+                <p>{{ post.content|truncatewords:30 |safe}}</p>
                 <p><small>By {{ post.author.username }} on {{ post.created_at }}</small></p>
                 <a href="{% url 'post_page' post.slug %}" class="read-more">Read More</a>
             </div>
