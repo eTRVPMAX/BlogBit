@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CommentForm
+from .forms import CommentForm, Signupform
 from .models import BlogPost, Tag
 
 
@@ -36,3 +36,15 @@ def tagged(request, slug):
     posts = BlogPost.objects.filter(tags=tag)
     context = {'tag': tag, 'posts': posts}
     return render(request, 'blog/tagged.html', context)
+
+
+def signup(request):
+    form = Signupform()
+    if request.method == 'POST':
+        form = Signupform(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
+    context = {'form': form}
+    return render(request, 'registration/signup.html', context)
