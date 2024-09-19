@@ -13,7 +13,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def post_page(request, slug):
-    post = BlogPost.objects.get(slug=slug)
+    post = get_object_or_404(BlogPost, slug=slug)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -24,6 +24,7 @@ def post_page(request, slug):
             return redirect('post_page', slug=post.slug)
     else:
         form = CommentForm()
+        
     context = {
         'post': post,
         'form': form,
@@ -39,12 +40,14 @@ def tagged(request, slug):
 
 
 def signup(request):
-    form = Signupform()
     if request.method == 'POST':
         form = Signupform(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('/')
+    else:
+        form = Signupform()
+        
     context = {'form': form}
     return render(request, 'registration/signup.html', context)
