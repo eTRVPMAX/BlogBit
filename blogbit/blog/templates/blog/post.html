@@ -14,17 +14,35 @@
           <a href="{% url 'tagged' tag.slug %}" class="tag">{{ tag.name }}</a>
         {% endfor %}
       </div>
-      <p>{{ post.content | safe }}</p>
+      <p>{{ post.content|safe }}</p>
       <p><small>By {{ post.author.username }} on {{ post.created_at }}</small></p>
     </div>
     <div class="comment-section">
       <h2>Comments</h2>
-      {% for comment in comments %}
+      {% for comment in page_obj %}
         <div class="comment">
           <p><big>{{ comment.content }}</big></p>
           <small>By {{ comment.author.username }} on {{ comment.date }}</small>
         </div>
       {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
 
     {% if user.is_authenticated %}

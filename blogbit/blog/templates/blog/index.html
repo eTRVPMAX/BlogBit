@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="posts">
-        {% for post in posts %}
+        {% for post in page_obj %}
             <div class="post">
                 {% if post.image %}
                     <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-thumbnail">
@@ -15,10 +15,28 @@
                     {% endfor %}
                 </div>
                 <h2><a href="{% url 'post_page' post.slug %}">{{ post.title }}</a></h2>
-                <p>{{ post.content|truncatewords:30 |safe}}</p>
+                <p>{{ post.content|truncatewords:30|safe }}</p>
                 <p><small>By {{ post.author.username }} on {{ post.created_at }}</small></p>
                 <a href="{% url 'post_page' post.slug %}" class="read-more">Read More</a>
             </div>
         {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
 {% endblock %}
