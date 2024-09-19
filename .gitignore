@@ -3,3 +3,4 @@ db.sqlite3
 blogbit/blog/__pycache__/
 blogbit/blog/migrations/
 blogbit/blogbit/__pycache__/
+blogbit/upload/
