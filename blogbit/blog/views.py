@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    posts = BlogPost.objects.all()
+    posts = BlogPost.objects.all().order_by('-created_at')
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -30,8 +30,8 @@ def post_page(request, slug):
     else:
         form = CommentForm()
         
-    comments = post.comments.all()
-    paginator= Paginator(comments, 3)
+    comments = post.comments.all().order_by('-date')
+    paginator = Paginator(comments, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
         
