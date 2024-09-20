@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CommentForm, Signupform
 from .models import BlogPost, Tag
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 
 # Create your views here.
@@ -26,6 +27,7 @@ def post_page(request, slug):
             comment.post = post
             comment.author = request.user
             comment.save()
+            messages.success(request, 'Your comment has been added successfully!')
             return redirect('post_page', slug=post.slug)
     else:
         form = CommentForm()
@@ -54,6 +56,7 @@ def signup(request):
         form = Signupform(request.POST)
         if form.is_valid():
             user = form.save()
+            messages.success(request, f'Account created for {form.cleaned_data.get("username")}!')
             login(request, user)
             return redirect('/')
     else:
