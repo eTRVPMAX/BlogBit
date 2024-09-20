@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CommentForm, Signupform
+from .forms import CommentForm, SignupForm, CreatePostForm
 from .models import BlogPost, Tag
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -44,6 +45,23 @@ def post_page(request, slug):
     }
     return render(request, 'blog/post.html', context)
 
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            form.save_m2m()
+            messages.success(request, 'Your post has been created successfully!')
+            return redirect('/')
+    else:
+        form = CreatePostForm()
+    
+    context = {'form': form}
+    return render(request, 'blog/create_post.html', context)
+
 def tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     posts = BlogPost.objects.filter(tags=tag)
@@ -53,14 +71,14 @@ def tagged(request, slug):
 
 def signup(request):
     if request.method == 'POST':
-        form = Signupform(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
             messages.success(request, f'Account created for {form.cleaned_data.get("username")}!')
             login(request, user)
             return redirect('/')
     else:
-        form = Signupform()
+        form = SignupForm()
         
     context = {'form': form}
     return render(request, 'registration/signup.html', context)

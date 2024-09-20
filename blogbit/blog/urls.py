@@ -8,6 +8,7 @@ urlpatterns = [
     path('post/<slug:slug>/', views.post_page, name='post_page'),
     path('tag/<slug:slug>/', views.tagged, name='tagged'),
     path('accounts/signup/',views.signup, name='signup'),
+    path('create/', views.create_post, name='create_post'),
 ]
 
 if settings.DEBUG:

@@ -3,6 +3,10 @@
 {% block title %}Blog Posts{% endblock %}
 
 {% block content %}
+    <div class="create-post-button">
+        <a href="{% url 'create_post' %}" class="btn btn-primary">Create Post</a>
+    </div>
+
     <div class="posts">
         {% for post in page_obj %}
             <div class="post">

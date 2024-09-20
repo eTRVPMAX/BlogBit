@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from PIL import Image
 
 # Create your models here.
 class BlogPost(models.Model):
@@ -21,6 +22,13 @@ class BlogPost(models.Model):
             super().save(update_fields=['slug'])
         else:
             super().save(*args, **kwargs)
+            
+        if self.image:
+            img = Image.open(self.image.path)
+            if img.height > 800 or img.width > 800:
+                output_size = (800, 800)
+                img.thumbnail(output_size)
+                img.save(self.image.path)
             
     def __str__(self):
         return self.title
