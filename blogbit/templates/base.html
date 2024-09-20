@@ -42,6 +42,15 @@
     </header>
     <main>
         <div class="container">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% block content %}
             <!-- Content from other templates will be injected here -->
             {% endblock %}
