@@ -64,7 +64,7 @@ def create_post(request):
 
 def tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
-    posts = BlogPost.objects.filter(tags=tag)
+    posts = BlogPost.objects.filter(tags=tag).order_by('-created_at')
     context = {'tag': tag, 'posts': posts}
     return render(request, 'blog/tagged.html', context)
 

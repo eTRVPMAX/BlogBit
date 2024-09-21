@@ -4,13 +4,13 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-    <div class="signup-container">
-        <div class="signup-form">
+    <div class="d-flex justify-content-center ">
+        <div class="signup-form card p-4 bg-transparent text-white text-center col-4">
             <h2>{% trans "Sign Up" %}</h2>
             <form method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 {% if form.errors %}
-                    <div class="error-messages">
+                    <div class="alert alert-danger">
                         <ul>
                             {% for field in form %}
                                 {% for error in field.errors %}
@@ -25,10 +25,10 @@
                 {% endif %}
                 {{ form.as_p }}
                 <div class="form-group">
-                    <button type="submit">{% trans "Sign Up" %}</button>
+                    <button type="submit" class="btn btn-light btn-block">{% trans "Sign Up" %}</button>
                 </div>
             </form>
-            <p>{% trans "Already have an account?" %} <a href="{% url 'login' %}">{% trans "Login here" %}</a></p>
+            <p class="mt-3">{% trans "Already have an account?" %} <a href="{% url 'login' %}" class=" text-decoration-none text-white">{% trans "Login here" %}</a></p>
         </div>
     </div>
 {% endblock %}

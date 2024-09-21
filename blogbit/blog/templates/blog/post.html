@@ -4,14 +4,14 @@
 
 {% block content %}
   <div class="container">
-    <div class="post-detail">
+    <div class="text-white post-detail">
       <h1>{{ post.title }}</h1>
       {% if post.image %}
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image img-fluid mb-3">
       {% endif %}
-      <div class="tags">
+      <div class="tags mb-2">
         {% for tag in post.tags.all %}
-          <a href="{% url 'tagged' tag.slug %}" class="tag">{{ tag.name }}</a>
+          <a href="{% url 'tagged' tag.slug %}" class="badge badge-secondary text-decoration-none">{{ tag.name }}</a>
         {% endfor %}
       </div>
       <p>{{ post.content|safe }}</p>
@@ -20,7 +20,7 @@
     <div class="comment-section">
       <h2>Comments</h2>
       {% for comment in page_obj %}
-        <div class="comment">
+        <div class="comment mb-3">
           <p><big>{{ comment.content }}</big></p>
           <small>By {{ comment.author.username }} on {{ comment.date }}</small>
         </div>
@@ -30,17 +30,17 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page=1" class="text-white text-decoration-none">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="text-white text-decoration-none">previous</a>
             {% endif %}
 
-            <span class="current">
+            <span class="current text-white">
                 Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="text-white text-decoration-none">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="text-white text-decoration-none">last &raquo;</a>
             {% endif %}
         </span>
     </div>
@@ -54,11 +54,11 @@
             {{ form.content.errors }}
             {{ form.content }}
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
     {% else %}
-      <p>Please <a href="{% url 'login' %}">log in</a> to leave a comment.</p>
+      <p>Please <a href="{% url 'login' %}" class="text-decoration-none">log in</a> to leave a comment.</p>
     {% endif %}
   </div>
 {% endblock %}

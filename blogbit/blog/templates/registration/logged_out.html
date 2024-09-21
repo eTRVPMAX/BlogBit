@@ -4,11 +4,11 @@
 {% block title %}Logout{% endblock %}
 
 {% block content %}
-    <div class="logout-container">
-        <div class="logout-message">
+    <div class=" d-flex justify-content-center mt-5 ">
+        <div class="logout-message card p4 bg-transparent text-white text-center col-4">
             <h2>{% trans "You have been logged out" %}</h2>
             <p>{% trans "Thank you for visiting. You have successfully logged out." %}</p>
-            <a href="{% url 'login' %}" class="btn">{% trans "Login Again" %}</a>
+            <a href="{% url 'login' %}" class="btn btn-primary">{% trans "Login Again" %}</a>
         </div>
     </div>
 {% endblock %}

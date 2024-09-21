@@ -50,7 +50,7 @@ class CreatePostForm(forms.ModelForm):
         fields = ['title', 'content', 'image', 'tags']
         widgets ={
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control'})
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
         }
         
     def __init__(self, *args, **kwargs):

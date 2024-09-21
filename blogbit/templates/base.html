@@ -6,35 +6,21 @@
     <title>{% block title %}Blog Posts{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <script>
-        // Back-to-top button functionality
-        window.onscroll = function() {
-            var backToTopButton = document.getElementById("back-to-top");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-
-        function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
         <div class="container">
             <h1>BlogBit</h1>
             <nav>
-                <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -56,16 +42,36 @@
             {% endblock %}
         </div>
     </main>
-    <footer>
-        <div class="container">
+    <footer class="mt-auto py-3 text-white">
+        <div class="container text-center">
             <p>&copy; {{ current_year }} BlogBit. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://facebook.com" target="_blank">Facebook</a>
-                <a href="https://twitter.com" target="_blank">Twitter</a>
-                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://facebook.com" target="_blank" class="text-white">Facebook</a>
+                <a href="https://twitter.com" target="_blank" class="text-white">Twitter</a>
+                <a href="https://instagram.com" target="_blank" class="text-white">Instagram</a>
             </div>
         </div>
     </footer>
     <div id="back-to-top" onclick="scrollToTop()">↑</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Back-to-top button functionality
+        window.onscroll = function() {
+            var backToTopButton = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
