@@ -36,7 +36,7 @@ python manage.py runserver
 ```
 
 ## Usage
-Access the api through a web browser at http://127.0.0.1:8000
+Access the Website through a web browser at http://127.0.0.1:8000
 
 ## Features
 - Create Account
