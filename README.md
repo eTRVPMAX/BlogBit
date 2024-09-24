@@ -5,7 +5,7 @@ BlogBit is a web-based blogging platform that allows users to create, view, and 
 ## Installation
 1. Clone the repository:
 ```
-git clone (https://github.com/eTRVPMAX/BlogBit.git)
+git clone https://github.com/eTRVPMAX/BlogBit.git
 ```
 
 2. Create a virtual environment:
