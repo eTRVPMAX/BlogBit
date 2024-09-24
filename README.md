@@ -53,3 +53,6 @@ Access the api through a web browser at http://127.0.0.1:8000
 
 ## Contributors
 - [Mohamed Ehab](https://github.com/eTRVPMAX)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
