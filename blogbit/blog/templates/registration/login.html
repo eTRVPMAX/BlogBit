@@ -10,6 +10,7 @@
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 {% if form.errors %}
+                    <!-- Display form errors -->
                     <div class="alert alert-danger">
                         <ul>
                             {% for field in form %}

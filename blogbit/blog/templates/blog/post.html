@@ -7,10 +7,12 @@
     <div class="text-white post-detail">
       <h1>{{ post.title }}</h1>
       {% if post.image %}
+        <!-- Display post image if available -->
         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image img-fluid mb-3">
       {% endif %}
       <div class="tags mb-2">
         {% for tag in post.tags.all %}
+          <!-- Display tags associated with the post -->
           <a href="{% url 'tagged' tag.slug %}" class="badge badge-secondary text-decoration-none">{{ tag.name }}</a>
         {% endfor %}
       </div>
@@ -30,16 +32,21 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
+                <!-- Link to the first page -->
                 <a href="?page=1" class="text-white text-decoration-none">&laquo; first</a>
+                <!-- Link to the previous page -->
                 <a href="?page={{ page_obj.previous_page_number }}" class="text-white text-decoration-none">previous</a>
             {% endif %}
 
             <span class="current text-white">
+                <!-- Display the current page number and total number of pages -->
                 Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
             </span>
 
             {% if page_obj.has_next %}
+                <!-- Link to the next page -->
                 <a href="?page={{ page_obj.next_page_number }}" class="text-white text-decoration-none">next</a>
+                <!-- Link to the last page -->
                 <a href="?page={{ page_obj.paginator.num_pages }}" class="text-white text-decoration-none">last &raquo;</a>
             {% endif %}
         </span>
@@ -58,6 +65,7 @@
         </form>
       </div>
     {% else %}
+      <!-- Prompt user to log in to leave a comment -->
       <p>Please <a href="{% url 'login' %}" class="text-decoration-none">log in</a> to leave a comment.</p>
     {% endif %}
   </div>

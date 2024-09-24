@@ -8,18 +8,22 @@
     <form method="post" enctype="multipart/form-data" class="create-post-form">
       {% csrf_token %}
       <div class="form-group">
+        <!-- Title field -->
         {{ form.title.label_tag }}
         {{ form.title }}
       </div>
       <div class="form-group">
+        <!-- Content field -->
         {{ form.content.label_tag }}
         {{ form.content }}
       </div>
       <div class="form-group">
+        <!-- Tags field -->
         {{ form.tags.label_tag }}
         {{ form.tags }}
       </div>
       <div class="form-group">
+        <!-- Image upload field -->
         {{ form.image.label_tag }}
         <div class="d-flex align-items-center">
           <label for="id_image" class="btn btn-primary">Upload</label>
@@ -34,6 +38,7 @@
 
 {% block extra_js %}
   <script>
+    // Display the selected file name for the image upload field
     document.getElementById('id_image').addEventListener('change', function() {
       var fileName = this.files[0].name;
       document.getElementById('file-name').textContent = fileName;
